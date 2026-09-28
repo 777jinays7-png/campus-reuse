@@ -75,3 +75,5 @@ Live Application + Commit ID
 
 ## Project Architecture
 Campus ReUse uses an Express.js server with server-generated pages and JSON API routes.
+## Local Development
+Run npm install to install dependencies, then npm start to launch the application on port 3000.
