@@ -83,3 +83,5 @@ GET /api/stats returns marketplace statistics.
 GET /health returns application health status.
 ## Testing
 The project includes automated tests for health checks, authentication, item validation, item APIs, and statistics.
+## Docker
+The application can be packaged as a Docker container for consistent deployment.
