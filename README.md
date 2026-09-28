@@ -77,3 +77,7 @@ Live Application + Commit ID
 Campus ReUse uses an Express.js server with server-generated pages and JSON API routes.
 ## Local Development
 Run npm install to install dependencies, then npm start to launch the application on port 3000.
+## API Documentation
+GET /api/items returns marketplace items.
+GET /api/stats returns marketplace statistics.
+GET /health returns application health status.
