@@ -87,3 +87,5 @@ The project includes automated tests for health checks, authentication, item val
 The application can be packaged as a Docker container for consistent deployment.
 ## CI/CD Pipeline
 GitHub Actions runs linting and tests, builds the Docker image, performs a health check, and deploys successful main-branch changes to Render.
+## Deployment
+Production deployment is hosted on Render and the running commit ID is displayed in the application footer.
