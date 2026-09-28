@@ -85,3 +85,5 @@ GET /health returns application health status.
 The project includes automated tests for health checks, authentication, item validation, item APIs, and statistics.
 ## Docker
 The application can be packaged as a Docker container for consistent deployment.
+## CI/CD Pipeline
+GitHub Actions runs linting and tests, builds the Docker image, performs a health check, and deploys successful main-branch changes to Render.
