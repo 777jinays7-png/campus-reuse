@@ -73,3 +73,5 @@ Live Application + Commit ID
 9. `test: expand automated quality checks`
 10. `ci: build docker image and deploy through actions`
 
+## Project Architecture
+Campus ReUse uses an Express.js server with server-generated pages and JSON API routes.
