@@ -73,3 +73,19 @@ Live Application + Commit ID
 9. `test: expand automated quality checks`
 10. `ci: build docker image and deploy through actions`
 
+## Project Architecture
+Campus ReUse uses an Express.js server with server-generated pages and JSON API routes.
+## Local Development
+Run npm install to install dependencies, then npm start to launch the application on port 3000.
+## API Documentation
+GET /api/items returns marketplace items.
+GET /api/stats returns marketplace statistics.
+GET /health returns application health status.
+## Testing
+The project includes automated tests for health checks, authentication, item validation, item APIs, and statistics.
+## Docker
+The application can be packaged as a Docker container for consistent deployment.
+## CI/CD Pipeline
+GitHub Actions runs linting and tests, builds the Docker image, performs a health check, and deploys successful main-branch changes to Render.
+## Deployment
+Production deployment is hosted on Render and the running commit ID is displayed in the application footer.
