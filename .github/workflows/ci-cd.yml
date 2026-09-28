@@ -1,0 +1,51 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+      - name: Lint
+        run: npm run lint
+      - name: Test
+        run: npm test
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Build Docker image
+        run: docker build --build-arg GIT_SHA=${{ github.sha }} -t campus-reuse .
+      - name: Smoke test /health
+        run: |
+          docker run -d --name campus-reuse-test -p 3000:3000 campus-reuse
+          sleep 5
+          curl --fail http://127.0.0.1:3000/health
+          docker rm -f campus-reuse-test
+
+  deploy:
+    needs: build
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy exact tested commit to Render
+        env:
+          RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
+          GIT_SHA: ${{ github.sha }}
+        run: curl --fail --silent --show-error -X POST "${RENDER_DEPLOY_HOOK}&ref=${GIT_SHA}"
