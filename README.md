@@ -72,3 +72,4 @@ Live Application + Commit ID
 8. `style: redesign responsive marketplace UI`
 9. `test: expand automated quality checks`
 10. `ci: build docker image and deploy through actions`
+
